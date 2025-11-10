@@ -1,15 +1,70 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Calendar, Users, CreditCard, FileText, 
-  Briefcase, Clock, LogOut, Menu, X, UserCheck 
-} from 'lucide-react';
+import * as Icons from 'lucide-react';
+
+// Импорт компонентов - используйте те, что у вас есть
+// Если компонента нет - закомментируйте его импорт
 import Login from './components/Login';
-import Bookings from './components/Bookings';
-import BookingCards from './components/BookingCards';
-import Payments from './components/Payments';
-import Guests from './components/Guests';
-import Agents from './components/Agents';
-import Reports from './components/Reports';
+// import Bookings from './components/Bookings';
+// import BookingCards from './components/BookingCards';
+// import Payments from './components/Payments';
+// import Guests from './components/Guests';
+// import Agents from './components/Agents';
+// import Reports from './components/Reports';
+
+// Временные заглушки (удалите когда добавите настоящие компоненты)
+const Bookings = () => (
+  <div className="p-6">
+    <h2 className="text-2xl font-bold mb-4">Бронирования</h2>
+    <div className="bg-white p-6 rounded-lg shadow">
+      <p>Список бронирований будет здесь</p>
+    </div>
+  </div>
+);
+
+const BookingCards = () => (
+  <div className="p-6">
+    <h2 className="text-2xl font-bold mb-4">Карточки бронирования</h2>
+    <div className="bg-white p-6 rounded-lg shadow">
+      <p>Карточки бронирования будут здесь</p>
+    </div>
+  </div>
+);
+
+const Guests = () => (
+  <div className="p-6">
+    <h2 className="text-2xl font-bold mb-4">Гости</h2>
+    <div className="bg-white p-6 rounded-lg shadow">
+      <p>База гостей будет здесь</p>
+    </div>
+  </div>
+);
+
+const Agents = () => (
+  <div className="p-6">
+    <h2 className="text-2xl font-bold mb-4">Контрагенты</h2>
+    <div className="bg-white p-6 rounded-lg shadow">
+      <p>Список контрагентов будет здесь</p>
+    </div>
+  </div>
+);
+
+const Payments = () => (
+  <div className="p-6">
+    <h2 className="text-2xl font-bold mb-4">Оплаты</h2>
+    <div className="bg-white p-6 rounded-lg shadow">
+      <p>Учёт платежей будет здесь</p>
+    </div>
+  </div>
+);
+
+const Reports = () => (
+  <div className="p-6">
+    <h2 className="text-2xl font-bold mb-4">Табель</h2>
+    <div className="bg-white p-6 rounded-lg shadow">
+      <p>Табель учёта времени будет здесь</p>
+    </div>
+  </div>
+);
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -40,14 +95,14 @@ const App = () => {
     setCurrentPage('bookings');
   };
 
-  // Пункты меню
+  // Пункты меню - иконки берём из Icons объекта
   const menuItems = [
-    { id: 'bookings', label: 'Бронирования', icon: Calendar },
-    { id: 'booking-cards', label: 'Карточки бронирования', icon: FileText },
-    { id: 'guests', label: 'Гости', icon: Users },
-    { id: 'agents', label: 'Контрагенты', icon: Briefcase },
-    { id: 'payments', label: 'Оплаты', icon: CreditCard },
-    { id: 'timesheet', label: 'Табель', icon: Clock },
+    { id: 'bookings', label: 'Бронирования', icon: 'Calendar' },
+    { id: 'booking-cards', label: 'Карточки бронирования', icon: 'FileText' },
+    { id: 'guests', label: 'Гости', icon: 'Users' },
+    { id: 'agents', label: 'Контрагенты', icon: 'Briefcase' },
+    { id: 'payments', label: 'Оплаты', icon: 'CreditCard' },
+    { id: 'timesheet', label: 'Табель', icon: 'Clock' },
   ];
 
   // Рендер страниц
@@ -92,14 +147,16 @@ const App = () => {
             className="p-2 hover:bg-gray-800 rounded transition-colors"
             title={sidebarOpen ? "Свернуть меню" : "Развернуть меню"}
           >
-            {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
+            {sidebarOpen ? <Icons.X size={20} /> : <Icons.Menu size={20} />}
           </button>
         </div>
 
         {/* Навигация */}
         <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
           {menuItems.map((item) => {
-            const Icon = item.icon;
+            // Получаем компонент иконки по имени из объекта Icons
+            const IconComponent = Icons[item.icon];
+            
             return (
               <button
                 key={item.id}
@@ -111,7 +168,7 @@ const App = () => {
                 }`}
                 title={item.label}
               >
-                <Icon size={20} className="flex-shrink-0" />
+                <IconComponent size={20} className="flex-shrink-0" />
                 {sidebarOpen && <span className="truncate">{item.label}</span>}
               </button>
             );
@@ -122,7 +179,7 @@ const App = () => {
         <div className="p-4 border-t border-gray-700">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-              <UserCheck size={20} />
+              <Icons.UserCheck size={20} />
             </div>
             {sidebarOpen && (
               <div className="flex-1 min-w-0">
@@ -139,7 +196,7 @@ const App = () => {
             className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg transition-colors"
             title="Выйти из системы"
           >
-            <LogOut size={18} />
+            <Icons.LogOut size={18} />
             {sidebarOpen && <span>Выход</span>}
           </button>
         </div>
