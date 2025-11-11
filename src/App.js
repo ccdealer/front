@@ -4,58 +4,17 @@ import * as Icons from 'lucide-react';
 // Импорт компонентов - используйте те, что у вас есть
 // Если компонента нет - закомментируйте его импорт
 import Login from './components/Login';
-// import Bookings from './components/Bookings';
-// import BookingCards from './components/BookingCards';
-// import Payments from './components/Payments';
-// import Guests from './components/Guests';
-// import Agents from './components/Agents';
-// import Reports from './components/Reports';
+import Bookings from './components/Bookings';
+import BookingCards from './components/BookingCards';
+import Payments from './components/Payments';
+import Guests from './components/Guests';
+import Agents from './components/Agents';
+import Timesheet from './components/Timesheet';
 
 // Временные заглушки (удалите когда добавите настоящие компоненты)
-const Bookings = () => (
-  <div className="p-6">
-    <h2 className="text-2xl font-bold mb-4">Бронирования</h2>
-    <div className="bg-white p-6 rounded-lg shadow">
-      <p>Список бронирований будет здесь</p>
-    </div>
-  </div>
-);
 
-const BookingCards = () => (
-  <div className="p-6">
-    <h2 className="text-2xl font-bold mb-4">Карточки бронирования</h2>
-    <div className="bg-white p-6 rounded-lg shadow">
-      <p>Карточки бронирования будут здесь</p>
-    </div>
-  </div>
-);
 
-const Guests = () => (
-  <div className="p-6">
-    <h2 className="text-2xl font-bold mb-4">Гости</h2>
-    <div className="bg-white p-6 rounded-lg shadow">
-      <p>База гостей будет здесь</p>
-    </div>
-  </div>
-);
 
-const Agents = () => (
-  <div className="p-6">
-    <h2 className="text-2xl font-bold mb-4">Контрагенты</h2>
-    <div className="bg-white p-6 rounded-lg shadow">
-      <p>Список контрагентов будет здесь</p>
-    </div>
-  </div>
-);
-
-const Payments = () => (
-  <div className="p-6">
-    <h2 className="text-2xl font-bold mb-4">Оплаты</h2>
-    <div className="bg-white p-6 rounded-lg shadow">
-      <p>Учёт платежей будет здесь</p>
-    </div>
-  </div>
-);
 
 const Reports = () => (
   <div className="p-6">
@@ -119,7 +78,7 @@ const App = () => {
       case 'payments':
         return <Payments />;
       case 'timesheet':
-        return <Reports />;
+        return <Timesheet />;
       default:
         return <Bookings />;
     }
